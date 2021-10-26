@@ -40,5 +40,20 @@ module.exports = function (config) {
     browsers: ['Chrome'],
     singleRun: false,
     restartOnFileChange: true
-  });
+  },
+  {
+    // For Angular template html
+    test: /\.html$/,
+    use: 'html-loader'
+  },
+  {
+    test: /\.scss$/,
+    exclude: /node_modules/,
+    use: [
+      'css-to-string-loader',
+      {loader: 'css-loader', options: {sourceMap: true}},
+      {loader: 'sass-loader', options: {sourceMap: true}}
+    ]
+  }
+  );
 };
